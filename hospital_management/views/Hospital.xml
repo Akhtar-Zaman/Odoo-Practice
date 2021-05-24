@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!--Tree view for the Patient Model-->
+    <record id="hospital_management_tree" model="ir.ui.view" >
+        <field name="name">hospital.management.tree</field>
+        <field name="model">hospital.management</field>
+        <field name="arch" type="xml">
+            <tree string="Department">
+                <field name="hos_name"/>               
+                <field name="hos_email"/>                           
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record id="Hospital_Menue_Action" model="ir.actions.act_window">
+        <field name="name">Hospital</field>
+        <field name="res_model">hospital.management</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Your First Doctor!</p>
+        </field>
+    </record>
+
+    <menuitem id="Hospital_Manue" name="Hospital" action="Hospital_Menue_Action" sequence="7"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</odoo>

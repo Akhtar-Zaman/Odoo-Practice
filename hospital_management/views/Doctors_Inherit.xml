@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="doctor_inherited_view" model="ir.ui.view">
+        <field name="name">Doctors Inherit</field>
+        <field name="model">hospital.doctors</field>
+        <field name="inherit_id" ref="hospital_management.hospital_doctors_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='doc_category']" position="after">
+                <field name="Specialization"/>               
+            </xpath>
+
+        </field>
+
+    </record>
+    
+
+</odoo>

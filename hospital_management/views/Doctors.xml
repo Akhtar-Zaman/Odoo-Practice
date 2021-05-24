@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!--Tree view for the Doctors Model-->
+    <record id="hospital_doctors_tree" model="ir.ui.view" >
+        <field name="name">hospital.doctors.tree</field>
+        <field name="model">hospital.doctors</field>
+        <field name="arch" type="xml">
+            <tree string="Doctors">
+                <field name="doc_name"/>               
+                <field name="doc_email"/>                           
+                                         
+            </tree>
+        </field>
+    </record>
+
+
+    <!--Form view for the Doctors Model-->
+    <record id="hospital_doctors_form" model="ir.ui.view" >
+        <field name="name">hospital.doctors.form</field>
+        <field name="model">hospital.doctors</field>
+        <field name="arch" type="xml">
+            <form string="Doctors">
+                <sheet>
+                    <header>
+                        <button string="Appointments" name="Patient_Appointments" type="object" class="oe_highlight"/>
+                    </header>
+
+                        <field name="doc_image" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="doc_name" placeholder="Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="doc_mobile"/>               
+                                <field name="doc_email"/>
+                            </group>
+                            <group>
+                                <field name="doc_address"/>
+                                <field name="doc_category"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Patients">
+                                <field name="doc_patients"/>
+                            </page>
+                        </notebook>
+                </sheet>                           
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hospital_doctors" model="ir.actions.act_window" >
+        <field name="name">Doctors</field>
+        <field name="res_model">hospital.doctors</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Create Your First Doctor!</p>
+        </field>
+    </record>
+
+    <menuitem id="Doctors_Manue" name="Doctors" parent="Hospital_Manue" sequence="15"/>
+    <menuitem id="Doctors_Submanue" name="Doctors" action="action_hospital_doctors" parent="Doctors_Manue" sequence="16"/>
+    
+
+
+
+
+</odoo>
