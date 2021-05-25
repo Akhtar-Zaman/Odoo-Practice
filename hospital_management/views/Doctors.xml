@@ -25,6 +25,8 @@
                 <sheet>
                     <header>
                         <button string="Appointments" name="Patient_Appointments" type="object" class="oe_highlight"/>
+
+                        <button string="Filter" name="%(hospital_management.patients_inherited_filter)d" type="action" class="oe_highlight"/>
                     </header>
 
                         <field name="doc_image" widget="image" class="oe_avatar"/>

@@ -25,6 +25,7 @@ class HospitalPateient(models.Model):
     pat_doctor = fields.Many2one('hospital.doctors', string="Doctor")
     appointment_date = fields.Date('Appointment Date')
 
+
     @api.depends('pat_bill')
     def discount_bill(self):
 
@@ -61,18 +62,3 @@ class HospitalPateient(models.Model):
 
 #########################################################################################
 
-class purchasefilter(models.TransientModel):
-    _name = 'patients.filter'
-
-    date_from = fields.Date("From")
-    date_to = fields.Date("To")    
-
-    def patients_filter(self):
-
-        return {
-            'name': "purchase filter",
-            'type': "ir.actions.act_window",
-            'res_model': "purchase.order",
-            'view_mode': "tree,form",
-            #'domain': [('id','in', intersection_as_list)],
-        }

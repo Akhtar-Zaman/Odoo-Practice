@@ -7,8 +7,9 @@
         <field name="model">hospital.patients</field>
         <field name="arch" type="xml">
             <tree string="Patients">
-                <field name="pat_name"/>               
-                <field name="pat_email"/>                           
+                <field name="pat_name"/>    
+                <field name="pat_doctor"/>           
+                <field name="appointment_date"/>                           
             </tree>
         </field>
     </record>
