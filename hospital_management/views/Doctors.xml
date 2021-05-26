@@ -2,21 +2,20 @@
 <odoo>
 
 
-    <!--Tree view for the Doctors Model-->
+    <!--  Tree view of "hospital.doctors" class   -->
     <record id="hospital_doctors_tree" model="ir.ui.view" >
         <field name="name">hospital.doctors.tree</field>
         <field name="model">hospital.doctors</field>
         <field name="arch" type="xml">
             <tree string="Doctors">
                 <field name="doc_name"/>               
-                <field name="doc_email"/>                           
-                                         
+                <field name="doc_email"/>                                                                   
             </tree>
         </field>
     </record>
 
 
-    <!--Form view for the Doctors Model-->
+    <!--  Form view of "hospital.doctors" class  -->
     <record id="hospital_doctors_form" model="ir.ui.view" >
         <field name="name">hospital.doctors.form</field>
         <field name="model">hospital.doctors</field>
@@ -24,9 +23,9 @@
             <form string="Doctors">
                 <sheet>
                     <header>
-                        <button string="Appointments" name="Patient_Appointments" type="object" class="oe_highlight"/>
+                        <button string="Appointments Today" name="Todays_Doctor_Appointment" type="object" class="oe_highlight"/>
 
-                        <button string="Filter" name="%(hospital_management.patients_inherited_filter)d" type="action" class="oe_highlight"/>
+                        <button string="Find Patient" name="Find_patient_by_date" type="object" class="oe_highlight"/>
                     </header>
 
                         <field name="doc_image" widget="image" class="oe_avatar"/>
@@ -56,6 +55,7 @@
         </field>
     </record>
 
+    <!--  Action of "hospital.doctors" class  -->
     <record id="action_hospital_doctors" model="ir.actions.act_window" >
         <field name="name">Doctors</field>
         <field name="res_model">hospital.doctors</field>
@@ -66,8 +66,7 @@
         </field>
     </record>
 
-    <menuitem id="Doctors_Manue" name="Doctors" parent="Hospital_Manue" sequence="15"/>
-    <menuitem id="Doctors_Submanue" name="Doctors" action="action_hospital_doctors" parent="Doctors_Manue" sequence="16"/>
+    <menuitem id="Doctors_Manue" name="Doctors" action="action_hospital_doctors" sequence="16"/>
     
 
 

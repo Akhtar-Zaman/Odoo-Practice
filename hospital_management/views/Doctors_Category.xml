@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!--  Tree view of "hospital.doctor.category" class   -->
     <record id="Doctors_Category_tree" model="ir.ui.view">
         <field name="name">Docotrs Category</field>
         <field name="model">hospital.doctor.category</field>
@@ -12,6 +13,7 @@
         </field>
     </record>
 
+    <!--  Form view of "hospital.doctor.category" class   -->
     <record id="Doctors_Category_form" model="ir.ui.view">
         <field name="name">Docotrs Category</field>
         <field name="model">hospital.doctor.category</field>
@@ -27,7 +29,7 @@
         </field>
     </record>
 
-
+    <!--  Action of "hospital.doctor.category" class   -->
     <record id="Doctors_Category_Action" model="ir.actions.act_window">
         <field name="name">Doctors Category</field>
         <field name="res_model">hospital.doctor.category</field>

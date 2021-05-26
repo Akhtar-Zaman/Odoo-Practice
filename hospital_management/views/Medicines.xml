@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Tree view of "hospital.medicines" class -->
+    <record id="hospital_medicines_tree" model="ir.ui.view" >
+        <field name="name">hospital.medicines.tree</field>
+        <field name="model">hospital.medicines</field>
+        <field name="arch" type="xml">
+            <tree string="Department">
+                <field name="mdcn_name"/>               
+                <field name="mdcn_price"/>                           
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- Form view of "hospital.medicines" class -->
+    <record id="hospital_medicines_form" model="ir.ui.view">
+        <field name="name">hospital.medicines.tree</field>
+        <field name="model">hospital.medicines</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="mdcn_name"/>               
+                        <field name="mdcn_price"/>                         
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action of "hospital.medicines" class -->
+    <record id="Action_for_Medicine" model="ir.actions.act_window">
+        <field name="name">Medicines</field>
+        <field name="res_model">hospital.medicines</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="Hospital_Medicines" name="Medicine" action="Action_for_Medicine" parent="Doctors_Manue" sequence="7"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</odoo>

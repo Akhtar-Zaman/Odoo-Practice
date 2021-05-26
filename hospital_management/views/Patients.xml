@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!--Tree view for the Patient Model-->
+    <!--Tree view of "hospital.patients" class-->
     <record id="hospital_patients_tree" model="ir.ui.view" >
         <field name="name">hospital.patients.tree</field>
         <field name="model">hospital.patients</field>
@@ -15,7 +15,7 @@
     </record>
 
 
-    <!--Form view for the Patient Model-->
+    <!--Form view of "hospital.patients" class-->
     <record id="hospital_patients_form" model="ir.ui.view" >
         <field name="name">hospital.patients.form</field>
         <field name="model">hospital.patients</field>
@@ -40,26 +40,26 @@
                             <field name="pat_disease"/>
                         </group>
                         <group string="Appointments">
-                            <field name="pat_doctor"/>
+                            <field name="pat_doctor" domain="[('doc_category', '=', pat_disease)]"/>
                             <field name="appointment_date"/>
+                            <field name="pat_medicine" widget="many2many_tags"/>
+                            <field name="pat_medicine_price"/>
                         </group>
                     </group>
 
                     <notebook>
                         <page string="Medicines">
-                            <field name="pat_doctor"/>
+                            <!-- <field name="pat_doctor"/> -->
                         </page>
                     </notebook>
-                </sheet>
-                <field name="pat_name"/>               
-                <field name="pat_email"/>                           
+                </sheet>                         
             </form>
         </field>
     </record>
 
 
 
-
+    <!-- Action of "hospital.patients" class -->
     <record id="action_hospital_patients" model="ir.actions.act_window" >
         <field name="name">patients</field>
         <field name="res_model">hospital.patients</field>
@@ -70,41 +70,7 @@
         </field>
     </record>
 
-    <menuitem id="patients_Manue" name="patients" parent="Hospital_Manue" sequence="15"/>
-    <menuitem id="patients_Manue2" name="patients" action="action_hospital_patients" parent="patients_Manue" sequence="20"/>
-
-
-    <!--Form view for the Patient Model-->
-    <record id="patients_inherited_filter_form" model="ir.ui.view" >
-        <field name="name">patients.filter.form</field>
-        <field name="model">patients.filter</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <group>
-                            <field name="date_from"/>
-                            <field name="date_to"/>
-                        </group>
-                    </group>    
-                </sheet>
-                <footer>
-                    <button name="patients_filter" string="Ok" type="object" class="btn btn-primary"/>
-                </footer>
-
-            </form>
-        </field>
-    </record>
-
-
-    <!--Action of the Menue -->
-    <record id="patients_inherited_filter" model="ir.actions.act_window" >
-        <field name="name">patients Filter</field>
-        <field name="res_model">patients.filter</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-    </record>
-    <menuitem id="patients_SubMenue" name="patients Filtering" action="patients_inherited_filter" parent="patients_Manue" sequence="25"/>
+    <menuitem id="patients_Manue" name="patients" action="action_hospital_patients" parent="Doctors_Manue" sequence="20"/>
 
 
 

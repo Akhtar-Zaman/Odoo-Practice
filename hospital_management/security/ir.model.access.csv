@@ -1,9 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
-access_for_admin,access_for_admin,model_hospital_management,hospital_management.Hospital_Admin_Group,1,1,1,1
-access_for_admin,access_for_admin,model_hospital_doctors,hospital_management.Hospital_Admin_Group,1,1,1,1
-access_for_admin,access_for_admin,model_hospital_patients,hospital_management.Hospital_Admin_Group,1,1,1,1
-access_for_admin,access_for_admin,model_hospital_doctor_category,hospital_management.Hospital_Admin_Group,1,1,1,1
+
+admin_access_for_DOCTOR,admin_access_for_DOCTOR,model_hospital_doctors,hospital_management.Hospital_Admin_Group,1,1,1,1
+admin_access_for_PATIENT,admin_access_for_PATIENT,model_hospital_patients,hospital_management.Hospital_Admin_Group,1,1,1,1
+admin_access_for_DoctorDepartment,admin_access_for_DoctorDepartment,model_hospital_doctor_category,hospital_management.Hospital_Admin_Group,1,1,1,1
+admin_access_for_WIZARD_PATIENT_FILTER,admin_access_for_WIZARD_PATIENT_FILTER,model_wizard_patients_filter,hospital_management.Hospital_Admin_Group,1,1,1,1
+admin_access_for_MEDICINE,admin_access_for_MEDICINE,model_hospital_medicines,hospital_management.Hospital_Admin_Group,1,1,1,1
 
 
 

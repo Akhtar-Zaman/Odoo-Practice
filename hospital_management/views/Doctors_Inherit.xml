@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
+    <!-- Inherited view of "hospital.doctors" class  -->
     <record id="doctor_inherited_view" model="ir.ui.view">
         <field name="name">Doctors Inherit</field>
         <field name="model">hospital.doctors</field>

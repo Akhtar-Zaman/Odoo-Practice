@@ -15,11 +15,14 @@
         'security/ir.model.access.csv',
 
         # Views
-        'views/Hospital.xml',
         'views/Doctors.xml',
         'views/Patients.xml',
         'views/Doctors_Category.xml',
-        'views/Doctors_Inherit.xml',
+        'views/Medicines.xml',
+        #'views/Doctors_Inherit.xml',
+
+        # Wizard
+        'views/wizard/wizard_patient_filter_doctor.xml',
         
     ],
     'demo': [],
