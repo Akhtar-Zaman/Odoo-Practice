@@ -3,7 +3,6 @@ from odoo.exceptions import UserError
 
 
 
-
 class HospitalPateient(models.Model):
     _name = 'hospital.patients'
     _rec_name = 'pat_name'
@@ -24,26 +23,22 @@ class HospitalPateient(models.Model):
     pat_medicine = fields.Many2many('hospital.medicines', string='Medicines')
     pat_medicine_price = fields.Integer(string='Price', compute='get_medicine_price')
 
+
+
+
+    def doc(self):
+        aa = self.env['hospital.doctors'].search([('id', '=', self.pat_doctor.id)])
+        return aa.doc_name
+
     def get_medicine_price(self):
-        a = []
-        b = 0
-
-        aa = self.env['hospital.medicines'].search([])
         
+        total_medicine_price = 0
+        aa = self.env['hospital.medicines'].search([('id', 'in', self.pat_medicine.ids)])
         for i in aa:
-            a.append(i.id)
+            total_medicine_price = total_medicine_price+i.mdcn_price
 
-        list1_as_set = set(a)
-        intersection = list1_as_set.intersection(self.pat_medicine.ids)
-        intersection_as_list = list(intersection)
-        
-        bb = self.env['hospital.medicines'].search([('id', 'in', intersection_as_list)])
-        for i in bb:
-            b = b+i.mdcn_price
+        self.pat_medicine_price = total_medicine_price
 
-        self.pat_medicine_price = b
-
-    
 
 
     @api.depends('pat_bill')
@@ -71,6 +66,20 @@ class HospitalPateient(models.Model):
              val['pat_address'] = 'Deleted'
 
         return super(HospitalPateient, self).write(val)
+
+
+    def Prescribe(self):
+    
+        return {
+            'name': "Prescription",
+            'type': "ir.actions.act_window",
+            'res_model': "doctors.prescription",
+            'view_mode': "form",
+            'context': {'default_Patient_name': self.pat_name,
+                        'default_Patient_email': self.pat_email,  
+                        'default_Patient_doctor': self.doc(),  
+            }         
+        }
 
 
 

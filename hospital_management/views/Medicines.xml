@@ -23,7 +23,8 @@
                 <sheet>
                     <group>
                         <field name="mdcn_name"/>               
-                        <field name="mdcn_price"/>                         
+                        <field name="mdcn_price"/>    
+                        <field name="doc_cat" />                                           
                     </group>
                 </sheet>
             </form>

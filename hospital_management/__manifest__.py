@@ -19,6 +19,7 @@
         'views/Patients.xml',
         'views/Doctors_Category.xml',
         'views/Medicines.xml',
+        'views/Prescription.xml',
         #'views/Doctors_Inherit.xml',
 
         # Wizard

@@ -11,5 +11,7 @@ class HospitalMedicines(models.Model):
     mdcn_type = fields.Char('Type')
     mdcn_group = fields.Char('Group')
     mdcn_price = fields.Integer('Price')
-
     mdcn_description = fields.Text('Description')
+
+
+    doc_cat = fields.Many2one('hospital.doctor.category')

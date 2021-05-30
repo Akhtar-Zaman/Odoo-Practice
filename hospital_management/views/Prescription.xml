@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form view of "doctors.prescription" class -->
+    <record id="patient_prescription_form" model="ir.ui.view">
+        <field name="name">patient.prescription.form</field>
+        <field name="model">doctors.prescription</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="Patient_name" />
+                <field name="Patient_email" />
+                <field name="Patient_doctor" />                   
+            </tree>
+        </field>
+    </record>
+
+    <!-- Tree view of "doctors.prescription" class -->
+    <record id="patient_prescription_tree" model="ir.ui.view">
+        <field name="name">patient.prescription.tree</field>
+        <field name="model">doctors.prescription</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="Patient_name" />
+                        <field name="Patient_email" />
+                        <field name="Patient_doctor" />                   
+                    </group>
+
+                    <notebook>
+                        <page string="Prescription">
+                            <field name="Patient_medicines">
+                                <tree editable="bottom">
+                                    <field name="medicines" />
+                                    <field name="morning" />
+                                    <field name="afternoon" />
+                                    <field name="evening" />
+                                    <field name="days" />
+                                    <field name="notes" />
+                                </tree>
+
+                            </field>
+                        </page>
+
+
+                        <page string="Bill">
+                            <!-- <field name="Patient_medicines">
+                                <tree editable="bottom">
+                                    <field name="medicines" />
+                                    <field name="medicine_price" />
+                                    <field name="doc_group" />
+                                </tree>
+
+                            </field> -->
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Action of "hospital.doctors" -->
+    <record id="Action_patient_prescription" model="ir.actions.act_window">
+        <field name="name"> Action.patient.prescription</field>
+        <field name="res_model">doctors.prescription</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="patient_prescription_menu"
+        name="Prescription"
+        parent="Doctors_Manue"
+        action= "Action_patient_prescription"
+        sequence="300"/>
+
+</odoo>
