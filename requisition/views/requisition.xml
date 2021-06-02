@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_requisition_tree" model="ir.ui.view">
+        <field name="name">product.requisition.tree</field>
+        <field name="model">product.requisition</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="employee" />
+                <field name="requisition_date" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="product_requisition_form" model="ir.ui.view">
+        <field name="name">product.requisition.form</field>
+        <field name="model">product.requisition</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <header>
+                        <button name="action_confirm" type="object" string="Confirm" states="draft" class="oe_highlight" groups="requisition.employee_product_requisition_group"/>
+                        <button name="action_approved" type="object" string="approved" states="confirm" class="oe_highlight" groups="requisition.manager_product_requisition_group"/>
+                        <button name="action_ready" type="object" string="ready" states="approved" class="oe_highlight" groups="requisition.manager_product_requisition_group"/>
+
+                        <button name="action_received" type="object" string="received" states="ready" class="oe_highlight" groups="requisition.employee_product_requisition_group"/>
+
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,approved,ready,received"/>
+                    </header>
+                    <group>
+                        <group>
+                            <field name="employee"  attrs="{'readonly': [('state', 'in', ('confirm', 'approved','ready', 'received'))]}"/>                       
+                            <field name="requisition_date" attrs="{'readonly': [('state', 'in', ('confirm', 'approved','ready', 'received'))]}"/>  
+                        </group>                     
+                    </group>
+
+                    <notebook>
+                        <page string="Requisition">
+                            <field name="requisition_order" attrs="{'readonly': [('state', 'in', ('confirm', 'approved','ready', 'received'))]}">
+                                <tree editable="bottom">
+                                    <field name="product" />
+                                    <field name="quantity" />
+
+                                </tree>
+                            </field>
+                            
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_requisition_action" model="ir.actions.act_window">
+        <field name="name">Requisition</field>
+        <field name="res_model">product.requisition</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="product_requisition_menu"
+        name="Requisiton"
+        action="product_requisition_action"
+        sequence="2"/>
+</odoo>

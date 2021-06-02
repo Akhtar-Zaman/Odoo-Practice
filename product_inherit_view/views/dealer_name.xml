@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Tree view for the Dealer Name-->
+    <record id="dealer_name_tree_view" model="ir.ui.view" >
+        <field name="name">dealer.name.tree</field>
+        <field name="model">dealer.name</field>
+        <field name="arch" type="xml">
+            <tree string="Dealers" editable="bottom">
+                <field name="Dealer_Name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Form view for the Dealer Name-->
+    <record id="dealer_name_form_view" model="ir.ui.view" >
+        <field name="name">dealer.name.form</field>
+        <field name="model">dealer.name</field>
+        <field name="arch" type="xml">
+            <form string="Dealers">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="Dealer_Name" placeholder="Dealer Name"/>
+                        </h1>
+                    </div> 
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--Action of the Menue -->
+    <record id="action_dealer_name" model="ir.actions.act_window" >
+        <field name="name">Dealer</field>
+        <field name="res_model">dealer.name</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="Dealer_name_menu"
+        name="Dealer"
+        action="action_dealer_name"
+        sequence="2"/>
+
+    <menuitem id="Dealer_name" name="Dealers" parent="sale.menu_sale_config" action="action_dealer_name"  sequence="16"/>
+    
+</odoo>

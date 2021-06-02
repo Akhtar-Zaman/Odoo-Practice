@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Tree view for the Product Brand-->
+    <record id="Product_brand_tree_view" model="ir.ui.view" >
+        <field name="name">product.brand.tree</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <tree string="Dealers" editable="bottom">
+                <field name="Product_brand"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Form view for the Product Brand-->
+    <record id="Product_brand_form_view" model="ir.ui.view" >
+        <field name="name">product.brand.form</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <form string="product brand">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="Product_brand" placeholder="Brand Name"/>
+                        </h1>
+                    </div> 
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--Action of the Menue -->
+    <record id="action_Product_brand" model="ir.actions.act_window" >
+        <field name="name">Brand</field>
+        <field name="res_model">product.brand</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="product_brand_name_menu"
+        name="Brand"
+        action="action_Product_brand"
+        sequence="3"/>
+
+    <menuitem id="Product_brand" name="Brands" parent="sale.menu_sale_config" action="action_Product_brand" sequence="3"/>
+    
+</odoo>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="action_report_custom_purchase_order"
+        model="purchase.order"
+        string="Custom Purchase Order"
+        report_type="qweb-pdf"
+        name="product_inherit_view.report_custom_purchase_order"
+        file="product_inherit_view.report_custom_purchase_order"
+    />
+
+
+
+    <template id="report_custom_purchase_order" name="Custom_Purchase_report" >
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2> Purchase Order: #&#160;<t t-esc="o.name"/> </h2>                       
+
+                        <div class="container">
+                            <div id="informations" class="row-mt32-mb32">
+                                <div id="vendor_informations" class="row mt32 mb32">
+                                    <div class="col-4 bm-2">
+                                        <strong>Vendor:</strong>
+                                        <p> <t t-esc="o.partner_id.name"/> </p>
+                                    </div>
+                                    <div class="col-4 bm-2" style="margin-left:180px;">
+                                        <strong>Confirmation Date:</strong>
+                                        <p> <t t-esc="o.date_approve"/> </p>
+                                    </div>                                    
+                                </div>
+                                <div id="date_informations" class="row mt32 mb32">
+                                    <div class="col-4 bm-2">
+                                        <strong>Purchase Representative:</strong>
+                                        <p> <t t-esc="o.user_id.name"/> </p>
+                                    </div>
+                                    <div class="col-4 bm-2" style="margin-left:180px;">
+                                        <strong>Receipt Date:</strong>
+                                        <p> <t t-esc="o.date_planned"/> </p>
+                                    </div>
+                                </div>                    
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <table class="table table-bordered border-primary">
+                                <tr>
+                                    <th>SN</th> 
+                                    <th>Description</th> 
+                                    <th>Brand</th> 
+                                    <th>Quantity</th> 
+                                    <th>Recieved</th> 
+                                    <th>Billed</th> 
+                                    <th>Unit Price</th> 
+                                    <th>Sub-Total</th> 
+                                </tr> 
+
+                                <t t-set="sn" t-value="1"/>
+                                <t t-foreach="o.order_line" t-as="line">                                    
+                                    <tr>
+                                        <td> <t t-esc="sn"/> </td>
+                                        <td> <t t-esc="line.name"/> </td>
+                                        <td> <t t-esc="line.product_id.product_brand.Product_brand"/> </td>
+                                        <td> <t t-esc="line.product_qty"/> </td>
+                                        <td> <t t-esc="line.qty_received"/> </td>
+                                        <td> <t t-esc="line.qty_invoiced"/> </td>
+                                        <td> <t t-esc="line.price_unit"/> </td>
+                                        <td> <t t-esc="line.price_subtotal"/> </td>
+                                    </tr> 
+                                    <t t-set="sn" t-value="sn +1"/>
+                                </t> 
+                            </table> 
+
+                            <div id="total" class="row justify-content-end">
+                                <div class="col-4">
+                                    <table class="table table-sm">
+                                        <tr class="border-black">
+                                            <td name="td_total_amount_label"><strong>Total</strong></td>
+                                            <td class="text-center">
+                                                <span t-esc="o.amount_untaxed"
+                                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>  
+                        </div>                                
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+
+
+    <template id="report_custom_purchase_orderkk" name="Custom_Purchase_report" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//th[@name='th_description']"  position="after">
+            <th name="th_brand"><strong>Brand Name</strong></th>            
+        </xpath>
+
+        <xpath expr="//td[@id='product']"  position="after">
+            <span t-field="line.product_id.product_brand"/>   
+            <td>
+                <span t-field="line.product_id.product_brand"/>
+            </td>       
+        </xpath>
+
+    </template>
+
+</odoo>

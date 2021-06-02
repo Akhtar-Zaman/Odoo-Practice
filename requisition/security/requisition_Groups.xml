@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="product_requisition_group_category" model="ir.module.category">
+        <field name="name"> Requisition </field>
+       <field name="sequence"> 5 </field>
+    </record>
+
+
+    <!-- EMPLOYEE group of Product Requisition -->
+    <record id="employee_product_requisition_group" model="res.groups">
+        <field name="name"> Employees </field>
+        <field name="category_id" ref="requisition.product_requisition_group_category" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        <field name="users" eval="[(4, ref('base.user_admin'))]" />
+    </record>
+
+
+    <!-- MANAGER group of Product Requisition -->
+    <record id="manager_product_requisition_group" model="res.groups">
+        <field name="name"> Manager </field>
+        <field name="category_id" ref="requisition.product_requisition_group_category" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        <field name="users" eval="[(4, ref('base.user_admin'))]" />
+    </record>
+
+
+    <!-- ADMIN group of Product Requisition -->
+    <record id="product_requisition_Admin_Group" model="res.groups">
+        <field name="name"> Admin </field>
+        <field name="category_id" ref="requisition.product_requisition_group_category" />
+        <field name="implied_ids" eval="[(4, ref('requisition.employee_product_requisition_group'))]" />
+        <field name="users" eval="[(4, ref('base.user_admin'))]" />
+    </record>
+
+
+
+
+
+</odoo>
