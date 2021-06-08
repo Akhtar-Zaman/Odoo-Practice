@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="product_inherit_search" model="ir.ui.view" >
+        <field name="name">product.inherit.search</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.product_template_search_form_view_stock"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position='inside'>
+                <filter string="Rating" name="groupby" context="{'group_by':'product_rating'}"/>
+            </xpath>  
+        </field>
+    </record>
+
+    <record id="product_inherit_test" model="ir.ui.view" >
+        <field name="name">product.inherit.test</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position='after'>
+                <field name="group"/>
+                <field name="product_rating"/>
+            </xpath>                 
+        </field>
+
+    </record>
+
+  
+</odoo>

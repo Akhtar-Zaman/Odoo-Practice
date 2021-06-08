@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_inherit_line_akha" model="ir.ui.view" >
+        <field name="name">purchase.inherited</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">  
+
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="active_product_group" />                
+                <field name="product_group" attrs="{'invisible': [('active_product_group', '=', False)]}" required="1"/>                
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position='attributes'>
+                <attribute name="domain">[('group', '=', parent.product_group)]</attribute>                
+            </xpath> 
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position='after'>
+                <field name="ratings" />                 
+            </xpath> 
+
+
+            <xpath expr="//field[@name='partner_id']" position='attributes'>
+                <attribute name="domain">[('is_company', '=', True)]</attribute>
+            </xpath> 
+
+        </field>
+    </record>
+
+    <!--Form view for the Patient Model-->
+    <record id="purchase_inherited_filter_form" model="ir.ui.view" >
+        <field name="name">purchase.filter.form</field>
+        <field name="model">purchase.filter</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <!-- <field name="customers"/> -->
+                            <field name="customers" widget="many2many_tags"/>
+                        </group>
+                    </group>    
+                </sheet>
+                <footer>
+                    <button name="purchsae_filter" string="view purchase orders" type="object" class="btn btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+        <!--Action of the Menue -->
+    <record id="purchase_inherited_filter" model="ir.actions.act_window" >
+        <field name="name">Purchase Filter</field>
+        <field name="res_model">purchase.filter</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="Filter_Purchase_Orders_menue" name="Filter Purchase Orders" parent="purchase.menu_procurement_management" action="purchase_inherited_filter" sequence="33"/>
+
+</odoo>
